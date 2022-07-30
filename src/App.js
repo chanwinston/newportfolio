@@ -4,6 +4,8 @@ import { useState } from "react";
 import todo from "./pics/livetodolist.png";
 import chat from "./pics/livemessenger.png";
 import pass from "./pics/passwordmanager.png";
+import back from "./pics/mountain.jpg";
+import back2 from "./pics/mountain2.jpg";
 
 const darkTheme = {
   body: "black",
@@ -24,6 +26,16 @@ const Wrapper = styled.div`
   padding-right: 75px;
   padding-left: 75px;
   background-color: ${(props) => props.theme.body};
+  background-image: url(${back});
+  height: 100vh;
+`;
+
+const Wrapper2 = styled.div`
+  padding-top: 50px;
+  padding-right: 75px;
+  padding-left: 75px;
+  background-color: ${(props) => props.theme.body};
+  background-image: url(${back2});
   height: 100vh;
 `;
 
@@ -72,8 +84,7 @@ const ProjectsContainer = styled.div`
 
 const ProjectHeader = styled.h1`
   align-self: center;
-  text-decoration: underline;
-  text-decoration-thickness: 20px;
+
   color: ${(props) => props.theme.text};
   font-weight: 900;
 `;
@@ -113,8 +124,13 @@ const Description = styled.p`
   color: ${(props) => props.theme.text};
 `;
 
-const Test = styled.div`
-  background-image: url("./pics/mountain.jpg");
+const Description2 = styled.p`
+  margin-top: 0;
+  font-size: 25px;
+  letter-spacing: 0px;
+  font-weight: 900;
+  color: ${(props) => props.theme.text};
+  text-align: right;
 `;
 
 function App() {
@@ -127,7 +143,6 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
-      <button onClick={() => toggleTheme()} />
       <Wrapper>
         <TopSection>
           <AboutMe>
@@ -144,13 +159,21 @@ function App() {
           </AboutMe>
           <Socials>
             <FaLinkedin
+              onClick={() =>
+                (window.location.href =
+                  "https://www.linkedin.com/in/winstonchan5")
+              }
+              style={{ cursor: "pointer" }}
               size='75px'
               backgroundColor={isDarkTheme ? darkTheme.body : lightTheme.body}
               color={isDarkTheme ? darkTheme.icons : lightTheme.icons}
             ></FaLinkedin>
             <FaGithubSquare
+              onClick={() =>
+                (window.location.href = "https://github.com/chanwinston")
+              }
+              style={{ cursor: "pointer", paddingLeft: 20 }}
               size='75px'
-              style={{ paddingLeft: 20 }}
               backgroundColor={isDarkTheme ? darkTheme.body : lightTheme.body}
               color={isDarkTheme ? darkTheme.icons : lightTheme.icons}
             ></FaGithubSquare>
@@ -160,18 +183,24 @@ function App() {
           <ProjectHeader>PROJECTS</ProjectHeader>
           <ProjectsContainer>
             <PictureContainer>
-              <Picture src={todo}></Picture>
+              <a href='https://livetodolist-66f7e.web.app/'>
+                <Picture src={todo}></Picture>
+              </a>
             </PictureContainer>
             <PictureContainer>
-              <Picture src={pass}></Picture>
+              <a href='https://chanwinston.github.io/passwordManager/'>
+                <Picture src={pass}></Picture>
+              </a>
             </PictureContainer>
             <PictureContainer>
-              <Picture src={chat}></Picture>
+              <a href='https://message-ccea8.web.app/'>
+                <Picture src={chat}></Picture>
+              </a>
             </PictureContainer>
           </ProjectsContainer>
         </BottomSection>
       </Wrapper>
-      <Wrapper>
+      <Wrapper2>
         <Bio>
           <Title>About Me</Title>
           <Description>
@@ -190,7 +219,7 @@ function App() {
         </Bio>
         <Inspiration>
           <Title>Project Inspiration</Title>
-          <Description>
+          <Description2>
             My priority when choosing a project is being able to find something
             <br />
             that I could implement in my life. I like creating projects that
@@ -206,9 +235,9 @@ function App() {
             stacks out there as well as push my limits while creating something
             <br />
             fun and interactive.
-          </Description>
+          </Description2>
         </Inspiration>
-      </Wrapper>
+      </Wrapper2>
     </ThemeProvider>
   );
 }
